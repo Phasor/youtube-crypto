@@ -1,7 +1,6 @@
 const axios = require("axios");
 const baseURL = 'https://youtube.googleapis.com/youtube/v3/channels?part=statistics&id='
 const apiKey = process.env.YT_API_KEY;
-//  { channel: "me", id: "UCgSDn4N3Ncg1-kfJTYPgwHA" }
 // search for channelId
 // want: subscriberCount, viewCount, videoCount
 

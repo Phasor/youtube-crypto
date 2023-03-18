@@ -2,6 +2,7 @@ const axios = require("axios");
 const baseURL = 'https://youtube.googleapis.com/youtube/v3/channels?part=statistics&id='
 const apiKey = process.env.YT_API_KEY;
 import connectToDatabase from '../../utils/dbConnect';
+import { ObjectId } from 'mongodb';
 
 // search for channelId
 // want: subscriberCount, viewCount, videoCount
@@ -20,31 +21,40 @@ const channelIDs= [
     { _id: "64155c283ffb0bf796e63ab7",channel: "CryptosRUs", id: "UCI7M65p3A-D3P4v5qW8POxQ" },
 ]
 
+// limit to 1 call per hour
+let lastCall;
+
 export default async function handler (req, res) {
-    const client = await connectToDatabase();
-    const collection = client.db().collection('Stats');
+    if (lastCall > Date.now() - 5 * 60 * 1000) { // 5 minutes
+        return res.status(429).json({ success: false, message: "Rate limit exceeded" });
+      } else {
+          lastCall = Date.now();
+      }
 
     try {
         for(let i = 0; i < channelIDs.length; i++) {
             try{
                 // call YT api
-                const response = await axios.get(`${baseURL}${channelIDs[i].id}&key=${apiKey}`);
-                const viewCount = response.data.items[0].statistics.viewCount;
-                const subscriberCount = response.data.items[0].statistics.subscriberCount;
-                const videoCount = response.data.items[0].statistics.videoCount;
+                let response = await axios.get(`${baseURL}${channelIDs[i].id}&key=${apiKey}`);
+                let viewCount = response.data.items[0].statistics.viewCount;
+                let subscriberCount = response.data.items[0].statistics.subscriberCount;
+                let videoCount = response.data.items[0].statistics.videoCount;
 
                 // response example {"kind":"youtube#channelListResponse","etag":"yuQiDbgQx9xvsGzJgeyfn_ugsIY","pageInfo":{"totalResults":1,"resultsPerPage":5},"items":[{"kind":"youtube#channel","etag":"ZtQgfnR45Fz3WIT7MQZF4P20T7k","id":"UCjemQfjaXAzA-95RKoy9n_g","statistics":{"viewCount":"244110355","subscriberCount":"1450000","hiddenSubscriberCount":false,"videoCount":"4179"}}]}
 
-                // create new record in the database
-                const newRecord = {
-                    channel: channelIDs[i].channel,
-                    viewCount: viewCount,
-                    subscriberCount: subscriberCount,
-                    videoCount: videoCount,
-                    date: new Date()
-                }
-                await collection.insertOne(newRecord);
-            }  catch(err) {
+                // add data to the collection
+                await collection.updateOne(
+                    { _id: new ObjectId(channelIDs[i]._id) },
+                    {
+                    $push: {
+                        subscribers: { date: new Date(), count: subscriberCount },
+                        views: { date: new Date(), count: viewCount },
+                        videos: { date: new Date(), count: videoCount },
+                    },
+                    }
+                );
+
+            } catch(err) {
                 console.log(err);
                 res.status(400).json({ success: false });
             }

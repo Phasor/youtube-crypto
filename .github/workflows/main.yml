@@ -19,6 +19,6 @@ jobs:
         uses: Satak/webrequest-action@v1.2.3
         with:
           # Web request URL endpoint
-          url: "https://tma.theanshuman.dev/api/update/twitter-header"
+          url: "https://youtube-crypto.vercel.app/api/runstats"
           method: GET
           headers: '{"Content-Type": "application/json"}'

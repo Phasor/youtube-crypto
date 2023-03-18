@@ -32,6 +32,10 @@ export default async function handler (req, res) {
       }
 
     try {
+        // connect to db
+        const { db } = await connectToDatabase('test');
+        const collection = db.collection('Channel');
+        
         for(let i = 0; i < channelIDs.length; i++) {
             try{
                 // call YT api

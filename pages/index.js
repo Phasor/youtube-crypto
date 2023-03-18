@@ -1,6 +1,18 @@
 import Head from 'next/head'
+import axios from 'axios'
+import { useEffect } from 'react'
 
 export default function Home() {
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get('/api/get-stats')
+      console.log(result.data)
+    }
+    fetchData()
+  }, [])
+
+
   return (
     <>
       <Head>

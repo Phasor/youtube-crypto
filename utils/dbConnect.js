@@ -4,7 +4,7 @@ const uri = process.env.DB_STRING;
 
 if (!uri) {
   throw new Error(
-    'Please define the DB_STRING environment variable inside .env.local',
+    'Please define the DB_STRING environment variable inside .env',
   );
 }
 

@@ -16,7 +16,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Run youtube date updates
-        uses: Satak/webrequest-action@v1.2.3
+        uses: Satak/webrequest-action@v1.2.4
         with:
           # Web request URL endpoint
           url: "https://youtube-crypto.vercel.app/api/runstats"

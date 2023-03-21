@@ -25,11 +25,11 @@ const channelIDs= [
 let lastCall;
 
 export default async function handler (req, res) {
-    if (lastCall > Date.now() - 5 * 60 * 1000) { // 5 minutes
-        return res.status(429).json({ success: false, message: "Rate limit exceeded" });
-      } else {
-          lastCall = Date.now();
-      }
+    // if (lastCall > Date.now() - 5 * 60 * 1000) { // 5 minutes
+    //     return res.status(429).json({ success: false, message: "Rate limit exceeded" });
+    //   } else {
+    //       lastCall = Date.now();
+    //   }
 
     try {
         // connect to db

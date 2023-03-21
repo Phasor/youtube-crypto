@@ -35,8 +35,8 @@ export default function Subscribers() {
         Filler
       );
     
-    
-     const options = {
+
+    const options = {
       responsive: true,
       plugins: {
         legend: {
@@ -45,12 +45,16 @@ export default function Subscribers() {
         title: {
           display: true,
           text: 'Total Subscribers',
+          fontFamily: 'Arial',
           font: {
             size: 18
-          }
+          },
+          color: 'black'
         },
       },
     };
+    
+    
     
   
     const labels = totalSubscribers ? totalSubscribers.map((obj) => {

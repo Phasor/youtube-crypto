@@ -44,7 +44,8 @@ export default function Views() {
           text: 'Total Views',
           font: {
             size: 18
-          }
+          },
+          color: 'black'
         },
         legend: {
           display: false

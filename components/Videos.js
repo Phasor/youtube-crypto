@@ -48,7 +48,8 @@ export default function Videos() {
           // increase font size
           font: {
             size: 18
-          }
+          },
+          color: 'black'
         },
       },
     };

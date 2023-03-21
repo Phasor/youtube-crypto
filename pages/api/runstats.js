@@ -1,7 +1,7 @@
 const axios = require("axios");
 const baseURL = 'https://youtube.googleapis.com/youtube/v3/channels?part=statistics&id='
 const apiKey = process.env.YT_API_KEY;
-import connectToDatabase from '../../utils/dbConnect';
+import getDBClient from '../../utils/dbConnect';
 import { ObjectId } from 'mongodb';
 
 // search for channelId
@@ -33,8 +33,11 @@ export default async function handler (req, res) {
 
     try {
         // connect to db
-        const { db } = await connectToDatabase('test');
-        const collection = db.collection('Channel');
+        const client = await getDBClient();
+        await client.db("test").command({ ping: 1 });
+        const db = client.db('test');
+        const collection = db.collection("Channel");
+
         
         for(let i = 0; i < channelIDs.length; i++) {
             try{

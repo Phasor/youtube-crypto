@@ -10,7 +10,7 @@ if (!uri) {
 
 let cachedClient = null;
 
-async function connectToDatabase() {
+async function getDBClient() {
   if (cachedClient) {
     console.log('Using cached connection');
     return cachedClient;
@@ -29,4 +29,4 @@ async function connectToDatabase() {
   return client;
 }
 
-export default connectToDatabase;
+export default getDBClient;

@@ -79,7 +79,7 @@ export default function Subscribers() {
   
   
   return (
-    < div className='h-full w-[600px] my-5'>
+    < div className='h-full min-w-[550px] my-5 p-6 ml-2'>
         { totalSubscribers ? (
             <Line options={options} data={data} />
             ) : (

@@ -79,7 +79,7 @@ export default function Views() {
   
   
   return (
-    <div className='h-full w-[600px] my-5'>
+    <div className='h-full min-w-[550px] my-5 p-2 ml-2'>
         { totalViews ? (
             <Line options={options} data={data} />
             ) : (

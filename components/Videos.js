@@ -80,7 +80,7 @@ export default function Videos() {
   
   
   return (
-    <div className='h-full w-[600px] my-5'>
+    <div className='h-full min-w-[550px] my-5 p-2 ml-2'>
         { totalVideos ? (
             <Line options={options} data={data} />
             ) : (

@@ -13,11 +13,47 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <div className='flex min-h-screen w-screen justify-center items-center overflow-x-hidden overflow-y-auto'>
-        <div className="flex flex-col items-center border-3 border-blue-500 w-full">
-          <h1 className=" text-4xl font-leckton font-semibold mt-20">Crypto YouTube Barometer</h1>
-          <Subscribers/>
-          <Views/>
-          <Videos/>
+        <div className='flex flex-col justify-center items-center'>
+          <h1 className=" text-4xl font-leckton font-semibold my-10 mx-auto">Crypto YouTube Barometer</h1>
+
+          <div className='grid grid-cols-1 md:grid-cols-2 max-w-6xl'>
+            {/* Text */}
+            <div className=' bg-gray-100'>
+              <h2 className='p-4 text-2xl font-leckton font-semibold mx-auto text-center'>What is This?</h2>
+              <p className='p-6 text-lg'>This is data dashboard looking at the total number of subscribers, views and videos put out by the biggest Crypto YouTube channels.</p>
+            
+              <h2 className='p-6 text-2xl font-leckton font-semibold mx-auto text-center'>What Crypto YT Channels are Included?</h2>
+              <ul className='p-6 list-disc ml-10'>
+                <li className='text-lg'>EllioTrades</li>
+                <li className=' text-lg'>Bankless</li>
+                <li className=' text-lg'>Altcoin Daily</li>
+                <li className=' text-lg'>AltCoin Buzz</li>
+                <li className=' text-lg'>CTO Larssen</li>
+                <li className=' text-lg'>Coin Bureau</li>
+                <li className=' text-lg'>BitBoy Crypto</li>
+                <li className=' text-lg'>CryptosRUs</li>
+                <li className=' text-lg'>JRNY Crypto</li>
+                <li className=' text-lg'>Benjamin Cowan</li>
+                <li className=' text-lg'>Lark Davis</li>
+              </ul>
+
+              <h2 className='p-6 text-2xl font-leckton font-semibold mx-auto text-center'>When Does This Data Update?</h2>
+              <p className='p-6 text-lg'>Once per day.</p>
+
+              <h2 className='p-6 text-2xl font-leckton font-semibold mx-auto text-center'>Nice Site. Who's the Dev?</h2>
+              <p className='p-6 text-lg'>@Phas0r on Twitter.</p>
+
+            </div>
+
+
+            {/* Graphs */}
+            <div className="flex flex-col items-center border-3 border-blue-500 w-full bg-gray-100">
+              <Subscribers/>
+              <Views/>
+              <Videos/>
+            </div>
+          </div>
+
         </div>
       </div>
     </>

@@ -1,75 +1,8 @@
 import Head from 'next/head'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Filler,
-  Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import Subscribers from '../components/Subscribers'
 
 export default function Home() {
-  const [rawData, setRawData] = useState({})
-  const [totalSubscribers, setTotalSubscribers] = useState([])
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios.get('/api/get-stats')
-      setRawData(result.data)
-      setTotalSubscribers(result.data.data[11].subscribers) // total subscribers
-    }
-    fetchData()
-  }, [])
-
-  // charts 
-  ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Filler,
-    Legend
-  );
-  
-   const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Chart.js Line Chart',
-      },
-    },
-  };
-  
-
-  const labels = totalSubscribers ? totalSubscribers.map((obj) => obj.date ) : [];
-
-  
- const data = {
-    labels,
-    datasets: [
-      {
-        fill: true,
-        label: 'Dataset 2',
-        // data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-        data: totalSubscribers ? totalSubscribers.map((obj) => obj.count ) : [],
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      },
-    ],
-  };
-
 
   return (
     <>
@@ -79,13 +12,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <div>
-        <p>Working!</p>
-        { rawData.data && console.log(rawData)}
-        { totalSubscribers ? (
-          <Line options={options} data={data} />
-          ) : (
-              <p>Loading chart...</p>
-        )}
+        <p className="">Working!</p>
+        <div className='h-[600px] w-[600px] p-2'>
+          <Subscribers/>
+        </div>
       </div>
     </>
   )

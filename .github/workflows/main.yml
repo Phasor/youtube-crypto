@@ -8,17 +8,23 @@ on:
     - cron: "5 */6 * * *"
   # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  fetch:
+  # This workflow contains a single job called "deployment"
+  deployment:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    environment: production
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Run youtube date updates
-        uses: Satak/webrequest-action@v1.2.4
+      - name: Run youtube data update request
+        id: myRequest
+        uses: fjogeleit/http-request-action@v1.14.0
         with:
           # Web request URL endpoint
           url: "https://youtube-crypto.vercel.app/api/runstats"
-          method: GET
-          headers: '{"Content-Type": "application/json"}'
+          method: 'GET'
+          customHeaders: '{"Content-Type": "application/json"}'
+      - name: Show Response
+          run: |
+            echo ${{ steps.myRequest.outputs.response }}
+            echo ${{ steps.myRequest.outputs.headers }}
+
+

@@ -1,0 +1,30 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Update YT Data New
+
+# Controls when the workflow will run
+on:
+  schedule: # At every 5th minute from 59 through 59.
+    - cron: "59/5 * * * *"
+  # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "deployment"
+  deployment:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Run youtube data update request
+        id: myRequest
+        uses: fjogeleit/http-request-action@v1.14.0
+        with:
+          # Web request URL endpoint
+          url: "https://youtube-crypto.vercel.app/api/runstats"
+          method: 'GET'
+          customHeaders: '{"Content-Type": "application/json"}'
+      - name: Show Response
+        run: |
+          echo ${{ steps.myRequest.outputs.response }}
+          echo ${{ steps.myRequest.outputs.headers }}
+
+

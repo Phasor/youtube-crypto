@@ -57,7 +57,7 @@ export default function Home() {
               <h2 className='p-6 text-2xl font-leckton font-semibold mx-auto text-center'>When Does This Data Update?</h2>
               <p className='p-6 text-lg'>Once per day.</p>
 
-              <h2 className='p-6 text-2xl font-leckton font-semibold mx-auto text-center'>Nice Site. Who&apos;s the Dev?</h2>
+              <h2 className='p-6 text-2xl font-leckton font-semibold mx-auto text-center'>Nice Site. Who is the Dev?</h2>
               <a className='cursor-pointer' href="https://twitter.com/phas0r" target="_blank" rel="noopener noreferrer"><p className='p-6 text-lg underline text-blue-500'>@Phas0r</p></a>
 
             </div>

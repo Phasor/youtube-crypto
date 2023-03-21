@@ -4,8 +4,8 @@ name: Update YT Data New
 
 # Controls when the workflow will run
 on:
-  schedule: # At every 5th minute from 59 through 59.
-    - cron: "7/5 * * * *"
+  schedule: # At 12:05pm once a day.
+    - cron: "5 12 * * *"
   # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "deployment"

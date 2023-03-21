@@ -23,8 +23,8 @@ jobs:
           method: 'GET'
           customHeaders: '{"Content-Type": "application/json"}'
       - name: Show Response
-          run: |
-            echo ${{ steps.myRequest.outputs.response }}
-            echo ${{ steps.myRequest.outputs.headers }}
+        run: |
+          echo ${{ steps.myRequest.outputs.response }}
+          echo ${{ steps.myRequest.outputs.headers }}
 
 

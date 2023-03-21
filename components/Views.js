@@ -13,13 +13,13 @@ import {
 import { Line } from 'react-chartjs-2';
 import axios from 'axios'
 
-export default function Subscribers() {
-    const [totalSubscribers, setTotalSubscribers] = useState([])
+export default function Views() {
+    const [totalViews, setTotalViews] = useState([])
 
     useEffect(() => {
       const fetchData = async () => {
         const result = await axios.get('/api/get-stats')
-        setTotalSubscribers(result.data.data[11].subscribers) // total subscribers
+        setTotalViews(result.data.data[11].views) // total views
       }
       fetchData()
     }, [])
@@ -46,13 +46,13 @@ export default function Subscribers() {
         },
         title: {
           display: true,
-          text: 'Total Subscribers',
+          text: 'Total Views',
         },
       },
     };
     
   
-    const labels = totalSubscribers ? totalSubscribers.map((obj) => {
+    const labels = totalViews ? totalViews.map((obj) => {
       // convert date to readable format
       const date = new Date(obj.date)
       const year = date.getFullYear()
@@ -67,9 +67,9 @@ export default function Subscribers() {
       datasets: [
         {
           fill: true,
-          label: 'Dataset 2',
+          label: 'Views',
           // data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-          data: totalSubscribers ? totalSubscribers.map((obj) => obj.count ) : [],
+          data: totalViews ? totalViews.map((obj) => obj.count ) : [],
           borderColor: 'rgb(53, 162, 235)',
           backgroundColor: 'rgba(53, 162, 235, 0.5)',
         },
@@ -78,8 +78,8 @@ export default function Subscribers() {
   
   
   return (
-    < div className='h-[600px] w-[600px]'>
-        { totalSubscribers ? (
+    <div className='h-[600px] w-[600px]'>
+        { totalViews ? (
             <Line options={options} data={data} />
             ) : (
                 <p>Loading chart...</p>

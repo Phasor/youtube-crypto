@@ -8,7 +8,6 @@ import {
   Title,
   Tooltip,
   Filler,
-  Legend, 
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios'
@@ -33,8 +32,7 @@ export default function Subscribers() {
         LineElement,
         Title,
         Tooltip,
-        Filler,
-        Legend
+        Filler
       );
     
     
@@ -42,11 +40,14 @@ export default function Subscribers() {
       responsive: true,
       plugins: {
         legend: {
-          position: 'top',
+          display: false
         },
         title: {
           display: true,
           text: 'Total Subscribers',
+          font: {
+            size: 18
+          }
         },
       },
     };
@@ -78,7 +79,7 @@ export default function Subscribers() {
   
   
   return (
-    < div className='h-[600px] w-[600px]'>
+    < div className='h-full w-[600px] my-5'>
         { totalSubscribers ? (
             <Line options={options} data={data} />
             ) : (

@@ -7,8 +7,7 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Filler,
-  Legend, 
+  Filler
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios'
@@ -33,8 +32,7 @@ export default function Videos() {
         LineElement,
         Title,
         Tooltip,
-        Filler,
-        Legend
+        Filler
       );
     
     
@@ -42,11 +40,15 @@ export default function Videos() {
       responsive: true,
       plugins: {
         legend: {
-          position: 'top',
+          display: false
         },
         title: {
           display: true,
           text: 'Total Videos',
+          // increase font size
+          font: {
+            size: 18
+          }
         },
       },
     };
@@ -78,7 +80,7 @@ export default function Videos() {
   
   
   return (
-    <div className='h-[600px] w-[600px]'>
+    <div className='h-full w-[600px] my-5'>
         { totalVideos ? (
             <Line options={options} data={data} />
             ) : (

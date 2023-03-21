@@ -8,7 +8,6 @@ import {
   Title,
   Tooltip,
   Filler,
-  Legend, 
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios'
@@ -34,20 +33,22 @@ export default function Views() {
         Title,
         Tooltip,
         Filler,
-        Legend
       );
     
     
      const options = {
       responsive: true,
       plugins: {
-        legend: {
-          position: 'top',
-        },
         title: {
           display: true,
           text: 'Total Views',
+          font: {
+            size: 18
+          }
         },
+        legend: {
+          display: false
+        }
       },
     };
     
@@ -78,7 +79,7 @@ export default function Views() {
   
   
   return (
-    <div className='h-[600px] w-[600px]'>
+    <div className='h-full w-[600px] my-5'>
         { totalViews ? (
             <Line options={options} data={data} />
             ) : (

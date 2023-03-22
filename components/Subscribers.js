@@ -73,7 +73,6 @@ export default function Subscribers() {
         {
           fill: true,
           label: 'Dataset 2',
-          // data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
           data: totalSubscribers ? totalSubscribers.map((obj) => obj.count ) : [],
           borderColor: 'rgb(53, 162, 235)',
           backgroundColor: 'rgba(53, 162, 235, 0.5)',
@@ -83,7 +82,7 @@ export default function Subscribers() {
   
   
   return (
-    < div className='h-full min-w-[550px] my-5 p-6 ml-2'>
+    < div className='h-full w-full sm:min-w-[550px] my-5 sm:p-6 sm:ml-2 flex justify-center'>
         { totalSubscribers ? (
             <Line options={options} data={data} />
             ) : (

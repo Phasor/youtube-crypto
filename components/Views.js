@@ -80,7 +80,7 @@ export default function Views() {
   
   
   return (
-    <div className='h-full min-w-[550px] my-5 p-2 ml-2'>
+    <div className='h-full w-full sm:min-w-[550px] my-5 sm:p-6 sm:ml-2 flex justify-center'>
         { totalViews ? (
             <Line options={options} data={data} />
             ) : (
